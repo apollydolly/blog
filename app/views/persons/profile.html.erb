@@ -1,6 +1,7 @@
 <h1>Persons#profile</h1>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+<%= link_to "Главная страница", root_path %>
 <% if user_signed_in? %>
     <span>Здравствуйте, <%= current_user.email %></span>
     <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>

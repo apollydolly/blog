@@ -1,0 +1,73 @@
+# version: '3'
+# services:
+#   db:
+#     image: mysql
+#     volumes:
+#       - db_data:/var/lib/mysql
+#     command: --default-authentication-plugin=mysql_native_password
+#     restart: always
+#     ports:
+#       - "33061:3306"
+#     environment:
+#       # MYSQL_ROOT_PASSWORD: golova010602
+#       - MYSQL_ROOT_PASSWORD=golova010602
+#       # - MYSQL_DATABASE=project1_development
+#       - MYSQL_USER=root
+#       - MYSQL_PASSWORD=golova010602
+#   rails:
+#     build: .
+#     command: bundle exec rails s -p 3000 -b '0.0.0.0'
+#     volumes:
+#       - .:/project1
+#     environment:
+#       DB_HOST: db
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - db
+# volumes:
+#   db_data:
+
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/project1
+    depends_on:
+      - db
+    environment:
+      # - DB_USERNAME=polina
+      # - DB_PASSWORD=12345
+      - DB_HOST=db
+      # - DATABASE_NAME=project1_development
+    networks:
+      - my_network
+  db:
+    image: mysql:latest
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+       - "33061:3306"
+    environment:
+      # - MYSQL_ROOT_PASSWORD=golova010602
+      - MYSQL_DATABASE=project1_development
+      # - MYSQL_USER=polina
+      # - MYSQL_PASSWORD=12345
+      - MYSQL_USER=polina
+      - MYSQL_PASSWORD=12345
+      # - MYSQL_ALLOW_EMPTY_PASSWORD=golova010602
+      # - MYSQL_RANDOM_ROOT_PASSWORD=golova010602
+    networks:
+      - my_network
+
+networks:
+  my_network:
+
+volumes:
+  mysql_data:
