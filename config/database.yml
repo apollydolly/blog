@@ -1,23 +1,26 @@
-# default: &default
-#   adapter: mysql2
-#   encoding: utf8mb4
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   username: polina
-#   password: 12345
-#   # host: <%= ENV["DB_HOST"] %>
-#   # database: project1_development
-#   socket: /var/run/mysqld/mysqld.sock
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: golova010602
+  # username: polina
+  # password: polina
+  # host: <%= ENV["DB_HOST"] %>
+  host: db
+  database: project1_development
+  socket: /var/run/mysqld/mysqld.sock
 
-# development:
-#   <<: *default
-#   database: project1_development
+development:
+  <<: *default
+  database: project1_development
 
-# test:
-#   <<: *default
-#   database: project1_test
+test:
+  <<: *default
+  database: project1_test
 
-# production:
-#   <<: *default
-#   database: project1_production
-#   username: project1
-#   password: <%= ENV["PROJECT1_DATABASE_PASSWORD"] %>
+production:
+  <<: *default
+  database: project1_production
+  username: project1
+  password: <%= ENV["PROJECT1_DATABASE_PASSWORD"] %>
