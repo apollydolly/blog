@@ -21,28 +21,3 @@
 #   database: project1_production
 #   username: project1
 #   password: <%= ENV["PROJECT1_DATABASE_PASSWORD"] %>
-
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: polina
-  password: 12345
-  host: <%= ENV['DB_HOST'] %>
-  database: <%= ENV['MYSQL_DATABASE'] %>
-  socket: /var/run/mysqld/mysqld.sock
-
-
-development:
-  <<: *default
-  database: project1_development
-
-test:
-  <<: *default
-  database: project1_test
-
-production:
-  <<: *default
-  database: project1_production
-  username: project1
-  password: <%= ENV["PROJECT1_DATABASE_PASSWORD"] %>
