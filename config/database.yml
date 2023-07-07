@@ -4,9 +4,6 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: golova010602
-  # username: polina
-  # password: polina
-  # host: <%= ENV["DB_HOST"] %>
   host: db
   database: project1_development
   socket: /var/run/mysqld/mysqld.sock
