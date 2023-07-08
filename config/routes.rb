@@ -13,8 +13,8 @@ end
   #root "users#index"
   get 'persons/profile', as: 'user_root'
   
-  #resources :articles do
-  resources :articles, param: :title , path: '' do
+  resources :articles, param: :slug do
+  # resources :articles, param: :title , path: '' do
     resources :comments
   end
 end
